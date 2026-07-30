@@ -2,7 +2,7 @@ class Solution {
     public static boolean lemonadeChange(int[] arr) {
         int five = 0;
         int ten = 0;
-        int tt = 0;
+        // int tt = 0;
         for(int i = 0 ; i < arr.length ; i++){
             if(arr[i]==5){
                 five++;
@@ -20,11 +20,11 @@ class Solution {
                 if(five>=1 && ten >=1){
                     five--;
                     ten--;
-                    tt++;
+                    // tt++;
                 }
                 else if(five>=3){
                     five = five - 3;
-                    tt++;
+                    // tt++;
                 }
                 else {
                     return false;
