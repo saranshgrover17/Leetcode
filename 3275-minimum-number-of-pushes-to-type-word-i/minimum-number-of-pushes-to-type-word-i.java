@@ -1,19 +1,20 @@
 class Solution {
     public static int minimumPushes(String s) {
-        int ans = 0 ;
         int n = s.length();
-        int count = 1;
-        while(n!=0){
-            if(n>8){
-                ans = ans + (count*8);
-                n = n - 8 ;
-                count++;
-            }
-            else {
-                ans = ans + (count*n);
-                n = 0 ;
-            }
+        int count = 0;
+
+        if(n<=8){
+            count =  n;
         }
-        return ans;
+        else if(n<=16){
+            count =  (8 + 2*(n-8));
+        }
+        else if(n<=24){
+            count =  (24 +3*(n-16));
+        }
+        else{
+            count =  (48 + 4*(n-24));
+        }
+        return count;
     }
 }
