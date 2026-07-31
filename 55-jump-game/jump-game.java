@@ -1,16 +1,14 @@
 class Solution {
     public static boolean canJump(int[] arr) {
-        int maxidx = 0;
-        int sum = 0 ;
-
-        for(int i = 0 ; i < arr.length ; i++){
-            if(i>maxidx){
-                return false;
-            }
-            if((i+arr[i])>maxidx){
-                maxidx = i + arr[i];
+        int finalpos = arr.length -1 ;
+        for(int i = arr.length-2 ; i >= 0 ; i--){
+            if(i+arr[i]>=finalpos){
+                finalpos = i;
             }
         }
-        return true;
+        if(finalpos==0){
+            return true;
+        }
+        return false;
     }
 }
