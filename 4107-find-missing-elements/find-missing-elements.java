@@ -2,7 +2,7 @@ class Solution {
     public static List<Integer> findMissingElements(int[] nums) {
         int max = Integer.MIN_VALUE;
         int min = Integer.MAX_VALUE;
-
+        HashSet<Integer> set = new HashSet<>();
         ArrayList<Integer> list = new ArrayList<>();
         for(int i = 0 ; i < nums.length ; i++){
             max = Math.max(max, nums[i]);
@@ -10,14 +10,13 @@ class Solution {
         }
 
         Arrays.sort(nums);
-        int i = 0 ;
-        while(min<=max){
-            while(nums[i]!=min){
-                list.add(min);
-                min++;
+        for(int i = 0 ; i < nums.length ; i++){
+            set.add(nums[i]);
+        }
+        for(int i = min ; i <=max ; i++){
+            if(!set.contains(i)){
+                list.add(i);
             }
-            i++;
-            min++;
         }
         return list;
     }
