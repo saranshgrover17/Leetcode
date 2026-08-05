@@ -9,7 +9,6 @@ class Solution {
             min = Math.min(min, nums[i]);
         }
 
-        Arrays.sort(nums);
         for(int i = 0 ; i < nums.length ; i++){
             set.add(nums[i]);
         }
