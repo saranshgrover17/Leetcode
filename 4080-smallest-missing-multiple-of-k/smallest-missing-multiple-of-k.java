@@ -3,7 +3,9 @@ class Solution {
         HashSet <Integer> set = new HashSet<>();
         
         for(int i = 0 ; i < arr.length ; i++){
-            set.add(arr[i]);
+            if(arr[i]%k==0){
+                set.add(arr[i]);
+            }
         }
         // for(int i = 1 ; i <= 10 ; i++){
         //     if(!set.contains(k*i)){
