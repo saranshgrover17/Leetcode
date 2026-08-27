@@ -17,19 +17,21 @@ class Solution {
                     prod = prod * arr[i];
                     ans[i] = 0;
                 }
-                if(arr[i]==0){
+                if (arr[i] == 0) {
                     idx = i;
                 }
             }
             ans[idx] = prod;
             return ans;
+        } else {
+            for (int i = 0; i < arr.length; i++) {
+                prod = prod * arr[i];
+            }
+            for (int i = 0; i < ans.length; i++) {
+                ans[i] = prod / arr[i];
+            }
         }
-        for (int i = 0; i < arr.length; i++) {
-            prod = prod * arr[i];
-        }
-        for (int i = 0; i < ans.length; i++) {
-            ans[i] = prod / arr[i];
-        }
+
         return ans;
     }
 }
