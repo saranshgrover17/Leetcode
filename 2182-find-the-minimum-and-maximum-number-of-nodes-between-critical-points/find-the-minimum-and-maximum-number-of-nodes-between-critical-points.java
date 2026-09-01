@@ -10,31 +10,41 @@
  */
 class Solution {
     public static int[] nodesBetweenCriticalPoints(ListNode head) {
-        if(head==null || head.next == null || head.next.next == null){
-            return new int[]{-1,-1};
+        if (head == null || head.next == null || head.next.next == null) {
+            return new int[]{-1, -1};
         }
-        ArrayList<Integer> list = new ArrayList<>();
+        // ArrayList<Integer> list = new ArrayList<>();
         ListNode prev = head;
         ListNode temp = head.next;
         int count = 1;
-        while(temp.next!=null){
+        int first = Integer.MAX_VALUE;
+        int last = Integer.MAX_VALUE;
+        int min = Integer.MAX_VALUE;
+        int crcount = 0;
+        int mover = 0;
+
+        while (temp.next != null) {
             count++;
-            if((temp.val>prev.val && temp.val>temp.next.val)||(temp.val<prev.val && temp.val<temp.next.val)){
-                list.add(count);
+            if ((temp.val > prev.val && temp.val > temp.next.val) || (temp.val < prev.val && temp.val < temp.next.val)) {
+                if (first == Integer.MAX_VALUE) {
+                    first = count;
+                    last = count;
+                } else {
+                    mover = last;
+                    last = count;
+                    min = Math.min(min , last - mover );
+                }
+                crcount++;
             }
             prev = temp;
             temp = temp.next;
         }
-        if(list.size()<2){
-            return new int[]{-1,-1};
+        if (crcount < 2) {
+            return new int[]{-1, -1};
         }
-        if(list.size()==2){
-            return new int[]{list.get(1)-list.get(0),list.get(1)-list.get(0)};
+        if (crcount == 2) {
+            return new int[]{min, min};
         }
-        int min = Integer.MAX_VALUE;
-        for(int i = 1 ; i < list.size() ; i++){
-            min = Math.min(min, list.get(i)-list.get(i-1));
-        }
-        return new int[]{min , list.get(list.size()-1)-list.get(0)};
+        return new int[]{min, last - first};
     }
 }
