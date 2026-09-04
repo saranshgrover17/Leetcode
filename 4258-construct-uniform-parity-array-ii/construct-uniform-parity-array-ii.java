@@ -1,17 +1,21 @@
 class Solution {
     public static boolean uniformArray(int[] arr) {
-        int minel = Integer.MAX_VALUE;
+        int minodd = Integer.MAX_VALUE;
+        int mineven = Integer.MAX_VALUE;
         for(int i = 0 ; i < arr.length ; i++){
-            minel = Math.min(minel, arr[i]);
-        }
-        if(minel%2!=0){
-            return true;
-        }
-        for(int i = 0 ; i < arr.length ; i++){
-            if(arr[i]%2==1){
-                return false;
+            if(arr[i]%2==0){
+                mineven = Math.min(mineven, arr[i]);
+            }
+            else if(arr[i]%2!=0){
+                minodd = Math.min(minodd, arr[i]);
             }
         }
-        return true;
-    }
+        if(minodd == Integer.MAX_VALUE||mineven == Integer.MAX_VALUE){
+            return true;
+        }
+        if(minodd<mineven){
+            return true;
+        }
+        return false;
+    }   
 }
