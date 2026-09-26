@@ -1,27 +1,29 @@
 class Solution {
     public static int minOperations(int[] arr, int x) {
-        HashMap<Integer,Integer> mpp = new HashMap<>();
         int sum = 0;
-        int length = -1;
-        for(int i = 0 ; i < arr.length ; i++){
+        for (int i = 0; i < arr.length; i++) {
             sum = sum + arr[i];
         }
-        int prefix = 0;
-        for(int i = 0 ; i < arr.length ; i++){
-            prefix = prefix+arr[i];
-            mpp.put(prefix,i);
-            if(prefix==sum-x){
-                length = Math.max(length, i+1);
+        int sub_sum = sum - x;
+        if(sub_sum==0){
+            return arr.length;
+        }
+        int curr = 0;
+        int length = -1;
+        int i = 0;
+        for (int j = 0; j < arr.length; j++) {
+            curr = curr + arr[j];
+            while(curr>sub_sum && i<=j){
+                curr = curr-arr[i];
+                i++;
             }
-            else if(prefix>sum-x){
-                if(mpp.containsKey(prefix-(sum-x))){
-                    length = Math.max(length, i-mpp.get(prefix-(sum-x)));
-                }
+            if(curr==sub_sum){
+                length = Math.max(length, j-i+1);
             }
         }
-        if(length == -1){
+        if (length == -1) {
             return -1;
         }
-        return arr.length-length;
+        return arr.length - length;
     }
 }
