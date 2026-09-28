@@ -8,19 +8,18 @@ class Solution {
         int i = 0;
         while (i < s.length()) {
             if (s.charAt(i) == '(') {
-                StringBuilder sbb = new StringBuilder();
-                i++;
-                while (s.charAt(i) != ')') {
-                    sbb.append(s.charAt(i));
-                    i++;
+                int j = i + 1;
+
+                while (s.charAt(j) != ')') {
+                    j++;
                 }
-                if (mpp.get(sbb.toString()) == null) {
+                String check = s.substring(i+1,j);
+                if (mpp.get(check) == null) {
                     sb.append('?');
                 } else {
-                    sb.append(mpp.get(sbb.toString()));
-
+                    sb.append(mpp.get(check));
                 }
-                i++;
+                i = j + 1;
             } else {
                 sb.append(s.charAt(i));
                 i++;
