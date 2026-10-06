@@ -11,10 +11,7 @@ class Solution {
                 if(!st.empty() && st.peek()=='('){
                     st.pop();
                 }
-                else if(!st.empty() && st.peek()==')'){
-                    st.push(s.charAt(i));
-                }
-                else if(st.empty()){
+                else {
                     st.push(s.charAt(i));
                 }
             }   
