@@ -1,11 +1,19 @@
 class Solution {
     public static long maxAlternatingSum(int[] arr) {
-        Integer[] arrr = new Integer[arr.length];
         for(int i = 0 ; i < arr.length ; i++){
-            arrr[i] = arr[i];
+            arr[i] = Math.abs(arr[i]);
+        }
+        Arrays.sort(arr);
+        int j = 0 ;
+        int k = arr.length - 1;
+        while(j<k){
+            int temp = arr[j];
+            arr[j] = arr[k];
+            arr[k] = temp;
+            j++;
+            k--;
         }
         long ans = 0;
-        Arrays.sort(arrr , (a,b)->Integer.compare(Math.abs(b), Math.abs(a)));
         int n = arr.length;
         int pos = 0;
         if(n%2==0){
@@ -17,10 +25,10 @@ class Solution {
 
         for(int i = 0 ; i < n ; i++){
             if(i<pos){
-                ans = ans + arrr[i]*arrr[i];
+                ans = ans + arr[i]*arr[i];
             }
             else {
-                ans = ans - arrr[i]*arrr[i];
+                ans = ans - arr[i]*arr[i];
             }
         }
         return ans;
