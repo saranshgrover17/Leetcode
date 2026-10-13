@@ -13,7 +13,7 @@ class Solution {
             j++;
             k--;
         }
-        long ans = 0;
+        long ans = 0L;
         int n = arr.length;
         int pos = 0;
         if(n%2==0){
