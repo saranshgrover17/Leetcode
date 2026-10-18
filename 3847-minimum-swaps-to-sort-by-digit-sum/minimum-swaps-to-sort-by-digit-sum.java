@@ -16,10 +16,13 @@ class Solution {
         }
         //comparator digit sum ke acc sorting karta h 
         Arrays.sort(nums, (a, b) -> {
-            if (sum(a) != sum(b)) {
-                return sum(a) - sum(b);
+            int sumA = sum(a);
+            int sumB = sum(b);
+
+            if (sumA != sumB) {
+                return Integer.compare(sumA, sumB);
             }
-            return a - b;
+            return Integer.compare(a, b);
         });
 
         HashMap<Integer, Integer> mpp = new HashMap<>();
