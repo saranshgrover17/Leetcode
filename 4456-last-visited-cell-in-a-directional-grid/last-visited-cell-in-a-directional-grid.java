@@ -1,38 +1,30 @@
 class Solution {
     public static int[] lastVisitedCell(char[][] grid) {
-        int[] arr = {0,0};
-        boolean[][] check = new boolean[grid.length][grid[0].length];
-        check[arr[0]][arr[1]] = true;
-        while(true){
-            if(grid[arr[0]][arr[1]]=='R'){
-                if( arr[1]+1 == grid[0].length || check[arr[0]][arr[1]+1]==true){
-                    break;
-                }
-                arr[1] = arr[1] + 1;
-                check[arr[0]][arr[1]] = true;
+        int m = grid.length;
+        int n = grid[0].length;
+
+        boolean[][] check = new boolean[m][n];
+        int i = 0 ;
+        int j = 0 ;
+        int row = 0 ;
+        int col = 0;
+        while(i>=0 && i<m && j>=0 && j<n && !check[i][j]){
+            row = i;
+            col = j;
+            check[i][j] = true;
+            if(grid[i][j]=='R'){
+                j++;
             }
-            else if(grid[arr[0]][arr[1]]=='D'){
-                if( arr[0]+1 == grid.length || check[arr[0]+1][arr[1]]==true){
-                    break;
-                }
-                arr[0] = arr[0] + 1;
-                check[arr[0]][arr[1]] = true;
+            else if(grid[i][j]=='D'){
+                i++;
             }
-            else if(grid[arr[0]][arr[1]]=='L'){
-                if(arr[1]-1 == -1 || check[arr[0]][arr[1]-1]==true ){
-                    break;
-                }
-                arr[1] = arr[1] - 1;
-                check[arr[0]][arr[1]] = true;
+            else if(grid[i][j]=='L'){
+                j--;
             }
-            else if(grid[arr[0]][arr[1]]=='U'){
-                if(arr[0]-1 == -1 || check[arr[0]-1][arr[1]]==true ){
-                    break;
-                }
-                arr[0] = arr[0] - 1;
-                check[arr[0]][arr[1]] = true;
+            else if(grid[i][j]=='U'){
+                i--;
             }
         }
-        return arr;
+        return new int[]{row,col};
     }
 }
