@@ -38,7 +38,7 @@ class Solution {
             if (pq.isEmpty()) {
                 time = Math.max(time, busy.peek()[0]);
             }
-            while(!busy.isEmpty() && time >= busy.peek()[0]){
+            while(!busy.isEmpty() && time == busy.peek()[0]){
                 int[] transfer = new int[]{(int)busy.peek()[1],(int)busy.peek()[2]};
                 busy.poll();
                 pq.offer(transfer);
